@@ -17,20 +17,20 @@ import cv2
 # In[23]:
 
 
-pip install opencv-python
+#pip install opencv-python
 
 
 # In[7]:
 
 
-import cv2
+
 
 
 # In[24]:
 
 
-img_ben=r'C:\Users\user\Desktop\BreakHis - Breast Cancer Histopathological Database\dataset_cancer_v1\dataset_cancer_v1\classificacao_binaria\400X\benign'
-img_mal=r'C:\Users\user\Desktop\BreakHis - Breast Cancer Histopathological Database\dataset_cancer_v1\dataset_cancer_v1\classificacao_binaria\400X\malignant'
+img_ben=r'img_folder1'
+img_mal=r'img_folder2'
 image_ben=[file for file in os.listdir(img_ben)]
 image_mal=[file for file in os.listdir(img_mal)]
 
@@ -76,7 +76,7 @@ def find_interest_points_op(image):
 # In[13]:
 
 
-image = cv2.imread(r"C:\Users\user\Desktop\New folder\malignant\SOB_M_DC-14-2523-400-004.png")
+image = cv2.imread(r"test_img")
 
 # Convert the image to grayscale
 gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -173,27 +173,12 @@ print(len(num_patches_mal))
 # In[27]:
 
 
-pip install imbalanced-learn
-
-
-# In[30]:
-
-
-get_ipython().system('pip install --upgrade scikit-learn')
-get_ipython().system('pip install --upgrade imbalanced-learn')
 
 
 # In[24]:
 
 
 #it is almost 2:1
-#trying smote
-
-from imblearn.over_sampling import SMOTE
-max_patches = max(len(fin_patches_mal), len(num_patches_mal))
-oversampled_patches, _ = smote.fit_resample(np.array(fin_patches_ben), np.zeros(len(fin_patches_ben)))
-fin_patches_ben.extend(oversampled_patches)
-
 
 # In[34]:
 
@@ -257,7 +242,7 @@ def save_image_patches(image_patches_list, output_folder):
 
 
 # Specify the output folder
-output_folder1 = r"C:\Users\user\Desktop\image_patches_benign"
+output_folder1 = r"out_put_folder1"
 
 # Save image patches from list1
 save_image_patches(fin_patches_ben_balanced, output_folder1)
@@ -269,7 +254,7 @@ save_image_patches(fin_patches_ben_balanced, output_folder1)
 # In[45]:
 
 
-output_folder2=r"C:\Users\user\Desktop\image_patches_mal"
+output_folder2=r"out_put_folder2"
 save_image_patches(fin_patches_mal_np, output_folder2)
 
 
